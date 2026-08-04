@@ -1,5 +1,6 @@
 package service;
 import java.util.ArrayList;
+import exceptions.BookNotFoundException;
 import model.Book;
 import model.Member;
 public class Library {
@@ -17,7 +18,8 @@ public class Library {
 		
 	}
 	
-	public Book findBookByid(int id) {
+	public Book findBookByid(int id) throws BookNotFoundException{
+		//throws is a warning to compiler "this way throw smt"
 		for(int i = 0; i < books.size(); i++ ) {
 			 Book x = books.get(i);
 			if( x.getId() == id) {
@@ -25,7 +27,10 @@ public class Library {
 			}
 		}
 		
-		return null;
+		throw new BookNotFoundException(
+		//throw is like 'return'. It stops everything to say there is error.
+				"Book not found"
+		);
 	}
 	
 	public Member findMemberById(int id) {
@@ -39,11 +44,19 @@ public class Library {
 		return null;
 	}
 	
-	public Book checkoutBook(int memberId, int bookId) {
+	public Book checkoutBook(int memberId, int bookId) throws BookNotFoundException{
 		Member x = findMemberById(memberId);
+		
 		Book y = findBookByid(bookId);
+		
+		
+		
+		
+		
 		if(x == null|| y == null) {
-			return null;
+			throw new BookNotFoundException(
+				"Book not found"
+			);
 		}
 		if(x.canBorrowMoreBooks()) {
 			if(y.getAvailableCopies() >= 1) {
@@ -59,13 +72,17 @@ public class Library {
 		
 	}
 	
-	public void returnBook(int memberid, int bookid) {
+	public void returnBook(int memberid, int bookid) throws BookNotFoundException{
 		//may cause error later
 		Member x = findMemberById(memberid);
 		Book y = findBookByid(bookid);
-		
+		if (y == null || x == null) {
+			throw new BookNotFoundException(
+					"Book not found"
+			);
+		}
 		if(x.returnBook(y)) {
-			y.borrowCopy();
+			y.returnCopy();
 		}
 
 	}
