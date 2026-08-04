@@ -1,16 +1,16 @@
 package model;
 
 import java.util.ArrayList;
-
+import model.MembershipStatus;
 public class Member {
 	private int memberid;
 	private String firstname;
 	private String lastname;
-	private String membershipStatus;
+	private MembershipStatus membershipStatus;
 	ArrayList<Book> borrowedBooks = new ArrayList<>();
 	static final int max_book = 3;
 
-	public Member(String firstname, String lastname, String membershipStatus, int memberid) {
+	public Member(String firstname, String lastname, MembershipStatus membershipStatus, int memberid) {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.membershipStatus = membershipStatus;

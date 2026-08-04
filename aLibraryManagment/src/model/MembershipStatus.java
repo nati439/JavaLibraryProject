@@ -1,5 +1,7 @@
 package model;
 
-public class MembershipStatus {
-
+public enum MembershipStatus {
+	ACTIVE,
+	SUSPENDED,
+	EXPIRED;
 }
