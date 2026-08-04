@@ -1,8 +1,8 @@
 package model;
-
+import interfaces.Borrowable;
 import java.util.Objects;
 
-public class Book {
+public class Book implements Borrowable{
     private int id;
     private String title;
     private String author;
@@ -20,7 +20,7 @@ public class Book {
         this.genre = genre;
     }
 
-    public boolean borrowCopy() {
+    public boolean borrowCopy(){
         if (isAvailable()) {
             availableCopies -= 1;
             return true;
@@ -38,7 +38,7 @@ public class Book {
         }
     }
 
-    public Boolean isAvailable() {
+    public boolean isAvailable() {
         return availableCopies >= 1;
     }
 
