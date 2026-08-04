@@ -1,20 +1,21 @@
 package model;
 import interfaces.Borrowable;
 import java.util.Objects;
+import aLibraryManagment.Enums;
 
 public class Book implements Borrowable{
     private int id;
     private String title;
     private String author;
     private String isbn;
-    private String genre;
+    private Enums genre;
     private int totalCopies;
     private int availableCopies;
 
     // constructor — you had title, author, genre here;
     // you still needed to add isbn, totalCopies, availableCopies (derived), and id (auto-generated) — 
     // these last parts weren't finished/confirmed in our chat
-    public Book(String title, String author, String genre) {
+    public Book(String title, String author, Enums genre) {
         this.title = title;
         this.author = author;
         this.genre = genre;
@@ -76,7 +77,7 @@ public class Book implements Borrowable{
         return isbn;
     }
 
-    public String getGenre() {
+    public Enums getGenre() {
         return genre;
     }
 
@@ -101,7 +102,7 @@ public class Book implements Borrowable{
         this.isbn = isbn;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(Enums genre) {
         this.genre = genre;
     }
 
