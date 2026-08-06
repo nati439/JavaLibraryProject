@@ -1,6 +1,8 @@
 package service;
 import java.util.ArrayList;
+import exceptions.MaximumBooksReachedException;
 import exceptions.BookNotFoundException;
+import exceptions.BookUnavailableException;
 import model.Book;
 import model.Member;
 public class Library {
@@ -44,7 +46,7 @@ public class Library {
 		return null;
 	}
 	
-	public Book checkoutBook(int memberId, int bookId) throws BookNotFoundException{
+	public Book checkoutBook(int memberId, int bookId) throws  BookNotFoundException, MaximumBooksReachedException, BookUnavailableException{
 		Member x = findMemberById(memberId);
 		
 		Book y = findBookByid(bookId);
@@ -63,11 +65,25 @@ public class Library {
 				if (y.borrowCopy() ) {
 					if(x.borrowBook(y)) {
 						return y;
-					}else {return null;}
-				}else {return null;}
-			}else {return null;}
+					}else {
+						throw new BookUnavailableException(
+								"Book not available"
+						);
+						}
+				}else {
+					throw new BookUnavailableException(
+							"Book not available"
+							);
+				}
+			}else {
+					throw new BookUnavailableException(
+							"Book not available"
+							);
+			} 
 		}else {
-			return null;
+			throw new MaximumBooksReachedException(
+					"Book is full"
+			);
 		}
 		
 	}

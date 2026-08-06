@@ -1,5 +1,7 @@
 package exceptions;
 
-public class MaximumBooksReachedException {
-
+public class MaximumBooksReachedException extends Exception{
+		public MaximumBooksReachedException(String error) {
+			super(error);
+		}
 }

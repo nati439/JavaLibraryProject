@@ -4,6 +4,7 @@ import java.util.Objects;
 import aLibraryManagment.Enums;
 
 public class Book implements Borrowable{
+	private static int nextId = 1;
     private int id;
     private String title;
     private String author;
@@ -15,10 +16,15 @@ public class Book implements Borrowable{
     // constructor — you had title, author, genre here;
     // you still needed to add isbn, totalCopies, availableCopies (derived), and id (auto-generated) — 
     // these last parts weren't finished/confirmed in our chat
-    public Book(String title, String author, Enums genre) {
+    public Book(String title, String author, Enums genre, int totalCopies) {
         this.title = title;
         this.author = author;
         this.genre = genre;
+        id = nextId;
+        nextId += 1;
+        this.totalCopies = totalCopies;
+        this.availableCopies = totalCopies;
+        
     }
 
     public boolean borrowCopy(){
